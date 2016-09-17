@@ -31,7 +31,7 @@
         // If we are compiling from a non-extension target, use the regular sharedApplication.
         UIApplication *application = [[self class] box_sharedApplication];
         if ([application respondsToSelector:@selector(canOpenURL:)]) {
-            result = [application performSelector:@selector(canOpenURL:) withObject:url];
+            result = [(NSNumber *) [application performSelector:@selector(canOpenURL:) withObject:url] boolValue];
         }
     }
     
@@ -45,7 +45,7 @@
         // If we are compiling from a non-extension target, use the regular sharedApplication.
         UIApplication *application = [[self class] box_sharedApplication];
         if ([application respondsToSelector:@selector(openURL:)]) {
-            result = [application performSelector:@selector(openURL:) withObject:url];
+            result = [(NSNumber *) [application performSelector:@selector(openURL:) withObject:url] boolValue];
         }
     }
     

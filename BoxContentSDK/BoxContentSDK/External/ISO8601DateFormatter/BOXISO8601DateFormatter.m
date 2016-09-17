@@ -62,11 +62,11 @@ static NSCache *timeZonesByOffset;
         parsingCalendar = [[self makeCalendarWithDesiredConfiguration] retain];
         unparsingCalendar = [[self makeCalendarWithDesiredConfiguration] retain];
 
-        format = BOXISO8601DateFormatCalendar;
-        timeSeparator = ISO8601DefaultTimeSeparatorCharacter;
-        includeTime = NO;
-        parsesStrictly = NO;
-        useMillisecondPrecision = NO;
+        _format = BOXISO8601DateFormatCalendar;
+        _timeSeparator = ISO8601DefaultTimeSeparatorCharacter;
+        _includeTime = NO;
+        _parsesStrictly = NO;
+        _useMillisecondPrecision = NO;
     }
     return self;
 }
@@ -95,8 +95,6 @@ static NSCache *timeZonesByOffset;
 //The following properties are only here because GCC doesn't like @synthesize in category implementations.
 
 #pragma mark Parsing
-
-@synthesize parsesStrictly;
 
 static NSUInteger read_segment(const unichar *str, const unichar **next, NSUInteger *out_num_digits);
 static NSUInteger read_segment_4digits(const unichar *str, const unichar **next, NSUInteger *out_num_digits);
@@ -670,12 +668,6 @@ static BOOL is_leap_year(NSUInteger year);
 
 #pragma mark Unparsing
 
-@synthesize format;
-@synthesize includeTime;
-@synthesize useMillisecondPrecision;
-@synthesize timeSeparator;
-@synthesize timeZoneSeparator;
-
 - (NSString *) replaceColonsInString:(NSString *)timeFormat withTimeSeparator:(unichar)timeSep {
     if (timeSep != ':') {
         NSMutableString *timeFormatMutable = [[timeFormat mutableCopy] autorelease];
@@ -709,7 +701,7 @@ static BOOL is_leap_year(NSUInteger year);
 }
 
 - (NSString *) stringFromDate:(NSDate *)date formatString:(NSString *)dateFormat timeZone:(NSTimeZone *)timeZone {
-    if (includeTime){
+    if (self.includeTime){
         NSString *timeFormat = self.useMillisecondPrecision ? ISO_TIME_FORMAT_MS_PRECISION : ISO_TIME_FORMAT;
         dateFormat = [dateFormat stringByAppendingFormat:@"'T'%@", [self replaceColonsInString:timeFormat withTimeSeparator:self.timeSeparator]];
     }
@@ -735,7 +727,7 @@ static BOOL is_leap_year(NSUInteger year);
     unparsingFormatter.timeZone = timeZone;
     NSString *str = [unparsingFormatter stringForObjectValue:date];
     
-    if (includeTime) {
+    if (self.includeTime) {
         NSInteger offset = [timeZone secondsFromGMTForDate:date];
         offset /= 60;  //bring down to minutes
         if (offset == 0)
@@ -832,7 +824,7 @@ static BOOL is_leap_year(NSUInteger year);
     NSString *string = [NSString stringWithFormat:@"%lu-W%02lu-%02lu", (unsigned long)year, (unsigned long)week, ((unsigned long)dayOfWeek) + 1U];
     
     NSString *timeString;
-    if(includeTime) {
+    if(self.includeTime) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         unichar timeSep = self.timeSeparator;
         if (!timeSep) timeSep = ISO8601DefaultTimeSeparatorCharacter;

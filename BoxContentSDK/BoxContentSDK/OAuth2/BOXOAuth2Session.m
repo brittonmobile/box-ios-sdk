@@ -167,7 +167,7 @@
 {    
     if (_nonce == nil) {
         NSMutableData * data = [[NSMutableData alloc] initWithLength:32];
-        SecRandomCopyBytes(kSecRandomDefault, 32, data.mutableBytes);
+        (void) SecRandomCopyBytes(kSecRandomDefault, 32, data.mutableBytes);
         NSData *encodedData = [data base64EncodedDataWithOptions:0];
         _nonce = [[NSString alloc] initWithData:encodedData encoding:NSUTF8StringEncoding];
     }
