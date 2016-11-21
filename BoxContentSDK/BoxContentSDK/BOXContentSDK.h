@@ -158,3 +158,4 @@
 #import "NSString+BOXContentSDKAdditions.h"
 #import "NSString+BOXURLHelper.h"
 #import "NSURL+BOXURLHelper.h"
+#import "BOXContentClient_Private.h"
