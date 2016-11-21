@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9441FBEF1D8DEAFD005A3F0C"
-               BuildableName = "BoxContentSDK iOS.framework"
+               BuildableName = "BoxContentSDK.framework"
                BlueprintName = "BoxContentSDK iOS"
                ReferencedContainer = "container:BoxContentSDK.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9441FBEF1D8DEAFD005A3F0C"
-            BuildableName = "BoxContentSDK iOS.framework"
+            BuildableName = "BoxContentSDK.framework"
             BlueprintName = "BoxContentSDK iOS"
             ReferencedContainer = "container:BoxContentSDK.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9441FBEF1D8DEAFD005A3F0C"
-            BuildableName = "BoxContentSDK iOS.framework"
+            BuildableName = "BoxContentSDK.framework"
             BlueprintName = "BoxContentSDK iOS"
             ReferencedContainer = "container:BoxContentSDK.xcodeproj">
          </BuildableReference>
