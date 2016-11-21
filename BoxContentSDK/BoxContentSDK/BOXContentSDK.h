@@ -169,3 +169,4 @@
 #import "BOXUser_Private.h"
 #import "UIApplication+ExtensionSafeAdditions.h"
 #import "UIDevice+BOXContentSDKAdditions.h"
+#import "BOXAPIOperation_Private.h"
